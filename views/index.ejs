@@ -14,9 +14,13 @@
         <span>Que tal adicionar mais alguns?</span>
     </div>
     <div class="container border mt-4 p-4 rounded-3 border-info bg-info bg-opacity-25">
-        <form>
+        <form action="/upload" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Titulo</label>
+                <label class="form-label">Capa do Filme</label>
+                <input class="form-control" type="file" name="file">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Titulo</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="titulo">
             </div>
             <div class="mb-3">
@@ -31,52 +35,30 @@
                 <label for="exampleFormControlTextarea1" class="form-label">Resumo</label>
                 <textarea class="form-control" name="resumo" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-dark">Cadastrar</button>
+            <input type="submit" value="Cadastrar" class="btn btn-dark">
         </form>
     </div>
     <div class="container mt-4">
         <h1>Seus filmes</h1>
         <div class="card-content">
+            <% filmes.forEach(filme => { %>
             <div class="card" style="width: 19.5rem;">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="/uploads/<%= filme.file %>" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title"><%= filme.titulo %></h5>
+                    <div class="itens-card">
+                        <p class="card-text">
+                        <%= filme.diretor %>
+                        </p>
+                        <p class="card-text ano">
+                            <%= filme.ano %>
+                        </p>
+                    </div>
+
+                    <a href="#" class="btn btn-danger">Deletar</a>
                 </div>
             </div>
-            <div class="card" style="width: 19.5rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 19.5rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 19.5rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 19.5rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+            <% }) %>
         </div>
     </div>
     <!-- Script do Bootstrap -->

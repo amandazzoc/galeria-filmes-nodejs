@@ -3,3 +3,10 @@
     flex-wrap: wrap;
     gap: 1rem;
 }
+.itens-card{
+    display: flex;
+    justify-content: space-between;
+}
+.ano {
+    color: blue;
+}
