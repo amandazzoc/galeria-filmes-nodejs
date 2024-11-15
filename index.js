@@ -1,10 +1,9 @@
 import express from "express"
-import multer from "multer"
 import connection from "./config/sequelize-config.js"
+import FilmesController from "./controllers/FilmesController.js";
 import Filme from "./models/Filme.js"
 
 const app = express()
-const upload = multer({ dest: "public/uploads/" });
 
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
@@ -25,32 +24,7 @@ connection.query(`CREATE DATABASE IF NOT EXISTS galeriafilmes;`)
     console.log(error);
   });
 
-
-app.get("/", (req, res) => {
-  Filme.findAll().then((filmes) => {
-    res.render("index", {
-      filmes: filmes,
-    });
-  });
-});
-// ROTA DE UPLOAD
-app.post("/upload", upload.single("file"), (req, res) => {
-    const file = req.file.filename
-    const titulo = req.body.titulo
-    const diretor = req.body.diretor;
-    const ano = req.body.ano;
-    const resumo = req.body.resumo;
-    Filme.create({
-      file: file,
-      titulo:titulo,
-      diretor:diretor,
-      ano:ano,
-      resumo: resumo
-    });
-    res.redirect("/")
-})
-
-
+app.use("/", FilmesController);
 
 const port = 8080
 

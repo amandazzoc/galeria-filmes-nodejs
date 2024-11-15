@@ -35,14 +35,14 @@
                 <label for="exampleFormControlTextarea1" class="form-label">Resumo</label>
                 <textarea class="form-control" name="resumo" rows="3"></textarea>
             </div>
-            <input type="submit" value="Cadastrar" class="btn btn-dark">
+            <input type="submit" value="Cadastrar" class="btn btn-dark" id="cadastrar">
         </form>
     </div>
     <div class="container mt-4">
         <h1>Seus filmes</h1>
         <div class="card-content">
             <% filmes.forEach(filme => { %>
-            <div class="card" style="width: 19.5rem;">
+            <div class="card card-filme" style="width: 19.5rem;">
                 <img src="/uploads/<%= filme.file %>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><%= filme.titulo %></h5>
@@ -55,7 +55,7 @@
                         </p>
                     </div>
 
-                    <a href="#" class="btn btn-danger">Deletar</a>
+                    <a href="/delete/<%= filme.id %>" class="btn btn-danger">Deletar</a>
                 </div>
             </div>
             <% }) %>

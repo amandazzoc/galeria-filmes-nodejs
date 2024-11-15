@@ -10,3 +10,12 @@
 .ano {
     color: blue;
 }
+.card-filme{
+    transition: transform 0.3s ease;
+}
+.card-filme:hover {
+  transform: scale(1.1); /* Aumenta o tamanho em 20% */
+}
+.card-content{
+    margin-top: 2%;
+}
